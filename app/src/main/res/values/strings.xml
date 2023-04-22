@@ -1,3 +1,51 @@
 <resources>
-    <string name="app_name">Final Project</string>
+    <string name="app_name">Car Builder</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="tabEntry2">Suv</string>
+    <string name="tabEntry1">Sedan</string>
+
+    <array name="car_make">
+        <item>Toyota</item>
+        <item>Ford</item>
+        <item>Honda</item>
+    </array>
+    <array name="car_model">
+        <item>Camry</item>
+        <item>Mustang</item>
+        <item>Civic</item>
+    </array>
+    <array name="car_basePrice">
+        <item>$32,000</item>
+        <item>$50,000</item>
+        <item>$23,995</item>
+    </array>
+    <array name="car_imageUrl">
+        <item>@drawable/toyota_camry</item>
+        <item>@drawable/ford_mustang</item>
+        <item>@drawable/honda_civic</item>
+    </array>
+
+    <array name="suv_make">
+        <item>Nissan</item>
+        <item>Kia</item>
+        <item>Honda</item>
+    </array>
+    <array name="suv_model">
+        <item>Rogue</item>
+        <item>Sportage</item>
+        <item>CRV</item>
+    </array>
+    <array name="suv_basePrice">
+        <item>$31,495</item>
+        <item>$34,298</item>
+        <item>$40,198</item>
+    </array>
+    <array name="suv_imageUrl">
+        <item>@drawable/nissan_rogue</item>
+        <item>@drawable/kia_sportage</item>
+        <item>@drawable/honda_crv</item>
+    </array>
+
 </resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp">
+
+    <ImageView
+        android:id="@+id/carImage"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:contentDescription="Image of car"/>
+
+    <TextView
+        android:id="@+id/carModel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/carImage"
+        android:textSize="32sp"/>
+    <TextView
+        android:id="@+id/carMake"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/carModel"
+        android:textSize="18sp"/>
+    <TextView
+        android:id="@+id/carPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/carMake"/>
+
+    <Button
+        android:id="@+id/buildCarBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/carPrice"
+        android:text="Build Car" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="1dp"
+        android:layout_below="@id/buildCarBtn"
+        android:background="@android:color/darker_gray"/>
+
+</RelativeLayout>

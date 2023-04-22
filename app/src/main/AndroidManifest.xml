@@ -12,13 +12,17 @@
         android:theme="@style/Theme.FinalProject"
         tools:targetApi="31">
         <activity
-            android:name=".SavedCars"
+            android:name=".CarBuilder"
             android:exported="false"
             android:theme="@style/Theme.FinalProject.NoActionBar"/>
         <activity
+            android:name=".SavedCars"
+            android:exported="false"
+            android:theme="@style/Theme.FinalProject.NoActionBar" />
+        <activity
             android:name=".CarListings"
             android:exported="false"
-            android:theme="@style/Theme.FinalProject.NoActionBar"/>
+            android:theme="@style/Theme.FinalProject.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
