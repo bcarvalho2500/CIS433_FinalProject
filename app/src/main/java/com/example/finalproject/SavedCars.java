@@ -1,11 +1,20 @@
 package com.example.finalproject;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+
+import com.example.finalproject.Database.CustomCar;
+import com.example.finalproject.Database.CustomCarViewModel;
+
+import java.util.List;
 
 public class SavedCars extends AppCompatActivity {
 
@@ -15,6 +24,25 @@ public class SavedCars extends AppCompatActivity {
         setContentView(R.layout.activity_saved_cars);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        RecyclerView mRecyclerView = findViewById(R.id.recyclerview);
+        CustomCarViewModel mCustomCarViewModel = new CustomCarViewModel(getApplication());
+        SavedCarsAdapter mAdapter = new SavedCarsAdapter(this, mCustomCarViewModel);
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
+
+
+        mCustomCarViewModel.getAllCustomCars().observe(this, new Observer<List<CustomCar>>() {
+            @Override
+            public void onChanged(@Nullable final List<CustomCar> customCars) {
+                // Update the cached copy of the words in the adapter.
+
+                mAdapter.setCustomCars(customCars);
+
+            }
+        });
 
     }
 

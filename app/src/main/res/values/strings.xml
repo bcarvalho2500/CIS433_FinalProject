@@ -6,6 +6,10 @@
     <string name="tabEntry2">Suv</string>
     <string name="tabEntry1">Sedan</string>
 
+    <string name="wheels19">150</string>
+    <string name="luxuryTrim">1250</string>
+    <string name="sportTrim">2125</string>
+
     <array name="car_make">
         <item>Toyota</item>
         <item>Ford</item>

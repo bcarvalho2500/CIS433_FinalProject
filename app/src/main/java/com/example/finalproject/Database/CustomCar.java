@@ -17,8 +17,6 @@ public class CustomCar {
     private String model;
     @ColumnInfo(name = "color")
     private String color;
-    @ColumnInfo(name = "year")
-    private String year;
     @ColumnInfo(name = "wheels")
     private String wheels;
     @ColumnInfo(name = "trim")
@@ -56,14 +54,6 @@ public class CustomCar {
 
     public void setColor(String color) {
         this.color = color;
-    }
-
-    public String getYear() {
-        return year;
-    }
-
-    public void setYear(String year) {
-        this.year = year;
     }
 
     public String getWheels() {

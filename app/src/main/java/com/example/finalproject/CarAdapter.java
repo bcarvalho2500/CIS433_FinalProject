@@ -67,7 +67,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyViewHolder> {
                     currentCar.put("Make", mCarMake.getText().toString());
                     currentCar.put("Model", mCarModel.getText().toString());
                     currentCar.put("Price", mCarPrice.getText().toString());
-                    currentCar.put("Image", String.valueOf(mCarImage.getDrawable().getConstantState()));
+                    currentCar.put("Image", String.valueOf(mCarImage.getTag()));
                     Intent startBuilding = new Intent(view.getContext(), CarBuilder.class);
                     startBuilding.putExtra("CarDetails", currentCar);
                     view.getContext().startActivity(startBuilding);
@@ -77,6 +77,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyViewHolder> {
 
         void bindTo(Car currentCar){
             Glide.with(mContext).load(currentCar.getImageResource()).into(mCarImage);
+            mCarImage.setTag(currentCar.getImageResource());
             mCarMake.setText(currentCar.getMake());
             mCarPrice.setText(currentCar.getPrice());
             mCarModel.setText(currentCar.getModel());

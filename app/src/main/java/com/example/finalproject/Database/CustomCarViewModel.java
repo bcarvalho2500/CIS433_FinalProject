@@ -24,11 +24,11 @@ public class CustomCarViewModel extends AndroidViewModel {
         mRepository.deleteAll();
     }
 
-    public void insertOrder(CustomCar customCar){
+    public void insertCar(CustomCar customCar){
         mRepository.insert(customCar);
     }
 
-    public void deleteOrder(String savedCarID){
+    public void deleteCar(String savedCarID){
         mRepository.delete(savedCarID);
     }
 }
