@@ -7,9 +7,22 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.health.SystemHealthManager;
+import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.DatePicker;
+import android.widget.TimePicker;
+
+import com.google.android.material.snackbar.Snackbar;
+
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -63,5 +76,37 @@ public class MainActivity extends AppCompatActivity {
     public void openCarListings(View view) {
         Intent openCarList =  new Intent(this, CarListings.class);
         startActivity(openCarList);
+    }
+
+    public void scheduleAppt(View view) {
+        DatePicker schedule = findViewById(R.id.datePicker);
+        int day = schedule.getDayOfMonth();
+        int month = schedule.getMonth();
+        int year = schedule.getYear();
+
+        TimePicker time = findViewById(R.id.timePicker);
+        int hour = time.getHour();
+        int minute = time.getMinute();
+
+        Calendar dateCalendar = Calendar.getInstance();
+        dateCalendar.set(year, month, day, hour, minute);
+        Calendar endDateCalendar = Calendar.getInstance();
+        endDateCalendar.set(year, month, day, hour, minute + 30);
+
+
+        try {
+            Intent addEvent = new Intent(Intent.ACTION_INSERT)
+                    .setData(CalendarContract.Events.CONTENT_URI)
+                    .putExtra(CalendarContract.Events.TITLE, "Test Drive")
+                    .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, dateCalendar.getTimeInMillis())
+                    .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endDateCalendar.getTimeInMillis())
+                    .putExtra(CalendarContract.Events.ALL_DAY, false);
+            if (addEvent.resolveActivity(getPackageManager()) != null){
+                startActivity(addEvent);
+            }
+
+        }catch (ActivityNotFoundException e){
+            Log.d("Intent", "Activity not found");
+        }
     }
 }
