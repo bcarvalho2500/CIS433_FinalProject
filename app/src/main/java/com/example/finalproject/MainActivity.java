@@ -1,9 +1,11 @@
 package com.example.finalproject;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -93,20 +95,39 @@ public class MainActivity extends AppCompatActivity {
         Calendar endDateCalendar = Calendar.getInstance();
         endDateCalendar.set(year, month, day, hour, minute + 30);
 
+        AlertDialog.Builder myAlertBuilder = new AlertDialog.Builder(MainActivity.this);
+        myAlertBuilder.setTitle("Confirm Test Drive?");
+        myAlertBuilder.setMessage("Are you sure you would like to schedule a test drive for " +
+                (month + 1) + "/" + day + "/" + year + " @ " + hour + ":" + minute + "?");
 
-        try {
-            Intent addEvent = new Intent(Intent.ACTION_INSERT)
-                    .setData(CalendarContract.Events.CONTENT_URI)
-                    .putExtra(CalendarContract.Events.TITLE, "Test Drive")
-                    .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, dateCalendar.getTimeInMillis())
-                    .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endDateCalendar.getTimeInMillis())
-                    .putExtra(CalendarContract.Events.ALL_DAY, false);
-            if (addEvent.resolveActivity(getPackageManager()) != null){
-                startActivity(addEvent);
+        myAlertBuilder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                try {
+                    Intent addEvent = new Intent(Intent.ACTION_INSERT)
+                            .setData(CalendarContract.Events.CONTENT_URI)
+                            .putExtra(CalendarContract.Events.TITLE, "Test Drive")
+                            .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, dateCalendar.getTimeInMillis())
+                            .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endDateCalendar.getTimeInMillis())
+                            .putExtra(CalendarContract.Events.ALL_DAY, false);
+                    if (addEvent.resolveActivity(getPackageManager()) != null){
+                        startActivity(addEvent);
+                    }
+
+                }catch (ActivityNotFoundException e){
+                    Log.d("Intent", "Activity not found");
+                }
             }
+        });
 
-        }catch (ActivityNotFoundException e){
-            Log.d("Intent", "Activity not found");
-        }
+        myAlertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Snackbar.make(view, "Appointment Canceled", Snackbar.LENGTH_SHORT).show();
+            }
+        });
+
+        myAlertBuilder.show();
+
     }
 }
